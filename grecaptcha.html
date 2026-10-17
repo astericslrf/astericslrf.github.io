@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>reCAPTCHA to redirect</title>
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+</head>
+<body>
+  <h1>Click the reCAPTCHA to continue</h1>
+<img src="https://astericslrf.github.io/webapps/startpage/img/asterics_logo.png" alt="Logo: AsTeRICS Project" title="Logo: AsTeRICS Project" class="headerLogo"/></a>
+  <!-- The form posts to your verification endpoint -->
+  <form id="recaptcha-form" action="/verify" method="POST">
+    <!-- Optional: target can be a hidden input or decided server-side -->
+    <input type="hidden" name="target" value="https://astericslrf.github.io">
+
+    <!-- Replace YOUR_SITE_KEY below with the site key from Google reCAPTCHA -->
+    <div class="g-recaptcha" data-sitekey="YOUR_SITE_KEY" data-callback="onRecaptcha"></div>
+
+    <!-- Fallback submit button in case JS is disabled -->
+    <noscript>
+      <p>Please enable JavaScript to use reCAPTCHA.</p>
+      <button type="submit">Proceed</button>
+    </noscript>
+  </form>
+
+  <script>
+    // When reCAPTCHA is solved, this callback submits the form.
+    function onRecaptcha(token) {
+      // The reCAPTCHA library adds a field named 'g-recaptcha-response' to the form automatically.
+      document.getElementById('recaptcha-form').submit();
+    }
+  </script>
+</body>
+</html>
